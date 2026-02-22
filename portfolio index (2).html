@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Wasim Iqbal — Livestock Sustainability Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f0a;
+    --surface: #111811;
+    --card: #141f14;
+    --accent: #5aab6a;
+    --accent2: #a8d4a8;
+    --text: #e8f0e8;
+    --muted: #7a9a7a;
+    --line: rgba(90,171,106,0.15);
+    --glow: rgba(90,171,106,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(90,171,106,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 80%, rgba(90,171,106,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Noise texture */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+    background: rgba(10,15,10,0.7);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(90,171,106,0.3);
+    padding: 0.35rem 0.75rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-credentials {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin: 1.2rem 0;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .cred-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--accent2);
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 500px;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; margin-top: 2rem;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.75rem 1.8rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 0.75rem 1.8rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero right: stats panel */
+  .hero-right {
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .stat-box {
+    background: var(--card);
+    padding: 1.8rem;
+    transition: background 0.2s;
+  }
+  .stat-box:hover { background: #182218; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    font-weight: 700;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── SECTION LAYOUT ─── */
+  section {
+    position: relative; z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  h2 em { font-style: italic; color: var(--accent); }
+
+  .section-intro {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* ─── FOCUS AREAS ─── */
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .focus-card {
+    background: var(--card);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .focus-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .focus-card:hover { background: #182218; }
+  .focus-card:hover::before { opacity: 1; }
+  .focus-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .focus-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .focus-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 0;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-dot {
+    position: absolute; left: -2.45rem; top: 0.35rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-org {
+    font-size: 0.85rem;
+    color: var(--accent2);
+    margin-bottom: 0.6rem;
+  }
+  .timeline-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-bar-item {
+    margin-bottom: 1.2rem;
+  }
+  .skill-bar-header {
+    display: flex; justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+  .skill-bar-track {
+    height: 3px;
+    background: var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    width: 0;
+    transition: width 1s ease;
+  }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.7rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(90,171,106,0.05);
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .edu-card:hover { transform: translateY(-4px); border-color: rgba(90,171,106,0.4); }
+  .edu-degree {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .edu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+  }
+  .edu-uni {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .edu-years {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent2);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .contact-icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .contact-detail { font-size: 0.85rem; color: var(--muted); }
+  .contact-detail strong { display: block; color: var(--text); font-weight: 400; margin-bottom: 0.1rem; }
+  .contact-detail a { color: var(--accent); text-decoration: none; }
+  .contact-detail a:hover { text-decoration: underline; }
+
+  .discovery-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .discovery-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .discovery-box p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .discovery-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(90,171,106,0.04);
+    border: 1px solid rgba(90,171,106,0.1);
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+  .discovery-item::before {
+    content: '🧫';
+    font-size: 1rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--line);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+    section { padding: 3rem 1.5rem; }
+    .skills-layout, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">M.W. Iqbal · DVM MS PhD</div>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-badge">Available for Collaboration</div>
+    <h1>Livestock <em>Sustainability</em> Scientist</h1>
+    <div class="hero-credentials">
+      <span class="cred-tag">DVM</span>
+      <span class="cred-tag">MSc Animal Nutrition</span>
+      <span class="cred-tag">PhD Animal Science</span>
+      <span class="cred-tag">Teagasc, Ireland</span>
+    </div>
+    <p class="hero-desc">Transforming ruminant production through microbiome science, precision monitoring, and data-driven nutrition strategies that reduce environmental impact.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="https://scholar.google.com/citations" target="_blank" class="btn-outline">Google Scholar</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num">11+</div>
+        <div class="stat-label">Years of Research</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Novel Archaeal Strains Discovered</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Peer-Reviewed Publications</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Countries of Research Activity</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH FOCUS -->
+<section id="research">
+  <div class="section-label">// Research Focus</div>
+  <h2>Where Science Meets <em>Sustainability</em></h2>
+  <p class="section-intro">Bridging the gap between rumen biology and real-world farming outcomes through integrated, multi-disciplinary research.</p>
+  <div class="focus-grid">
+    <div class="focus-card">
+      <div class="focus-icon">🦠</div>
+      <div class="focus-title">Rumen Microbial Ecology</div>
+      <p class="focus-desc">Investigating methanogen communities and their role in enteric CH₄ production using metagenomics and bioinformatics pipelines.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">📉</div>
+      <div class="focus-title">Methane Mitigation</div>
+      <p class="focus-desc">Developing nutritional and microbial strategies to reduce greenhouse gas emissions from dairy cattle and sheep without compromising productivity.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">📡</div>
+      <div class="focus-title">Precision Livestock Monitoring</div>
+      <p class="focus-desc">Validating accelerometer-based sensors and Wi-Fi-enabled systems for continuous, automated measurement of grazing and rumination behaviour.</p>
+    </div>
+    <div class="focus-card">
+      <div class="focus-icon">📊</div>
+      <div class="focus-title">Data Modelling & Analytics</div>
+      <p class="focus-desc">Building multivariate predictive models in R and SAS that link behaviour, microbiome, and production data to actionable farm management insights.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// Career Timeline</div>
+  <h2>Research & <em>Industry</em> Experience</h2>
+  <p class="section-intro">Over a decade spanning veterinary practice, corporate agriculture, doctoral research, and international science.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Apr 2024 — Present</div>
+      <div class="timeline-role">Researcher — Enteric Methane & Rumen Microbiome</div>
+      <div class="timeline-org">Teagasc, Ireland</div>
+      <p class="timeline-desc">Joint international programme with AgResearch New Zealand. Applying metagenomics and bioinformatics to study how rumen microbiota influence methanogenesis and milk/meat fatty acid profiles. Collaborating with Teagasc, MTU, ICBF, and Sheep Ireland.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Nov 2025 — Present</div>
+      <div class="timeline-role">Editor — Veterinary and Animal Science</div>
+      <div class="timeline-org">Elsevier</div>
+      <p class="timeline-desc">Overseeing peer-review for research manuscripts; coordinating expert reviewers and making editorial recommendations aligned with publication ethics.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Jan 2023 — Dec 2023</div>
+      <div class="timeline-role">Contract Researcher — Precision Livestock Farming</div>
+      <div class="timeline-org">Massey University, New Zealand</div>
+      <p class="timeline-desc">Analysed behavioural and production data from sensor-based systems to improve understanding of grazing, rumination, and activity under different management conditions.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Mar 2019 — Nov 2022</div>
+      <div class="timeline-role">Doctoral Researcher</div>
+      <div class="timeline-org">Massey University, New Zealand</div>
+      <p class="timeline-desc">Led end-to-end PhD research in precision dairy farming. Developed automated behaviour-monitoring protocols, established Wi-Fi on-farm data systems, and built multivariate models linking behaviour to production performance.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Sep 2017 — Jul 2018</div>
+      <div class="timeline-role">Research Assistant — Buffalo Nutrition & Microbiome</div>
+      <div class="timeline-org">Buffalo Research Institute, Chinese Academy of Agricultural Sciences, China</div>
+      <p class="timeline-desc">Contributed to studies on buffalo rumen microbiology and enteric methane emissions. Managed rumen microbial laboratory operations and experimental design.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Aug 2012 — Aug 2014</div>
+      <div class="timeline-role">Technical Services & Nutrition Advisory</div>
+      <div class="timeline-org">Engro Foods / Binsadiq International, Pakistan</div>
+      <p class="timeline-desc">Delivered farm-level advisory on nutrition, health, and farm economics for commercial dairy systems. Implemented dry matter-based feeding programmes, silage production, and climate-smart initiatives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// Technical Expertise</div>
+  <h2>Skills & <em>Capabilities</em></h2>
+  <p class="section-intro">A blend of wet lab, computational, and applied farm science expertise.</p>
+  <div class="skills-layout">
+    <div>
+      <div class="skill-group-title">Core Competencies</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-header"><span>Metagenomics & Bioinformatics</span><span>90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-header"><span>Statistical Analysis (R, SAS)</span><span>92%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-header"><span>Precision Livestock Technology</span><span>88%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-header"><span>Ruminant Nutrition & Health</span><span>95%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-header"><span>Scientific Writing & Peer Review</span><span>90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-group-title">Research & Technical Tags</div>
+      <div class="tag-cloud">
+        <span class="tag">Enteric Methane</span>
+        <span class="tag">Rumen Microbiology</span>
+        <span class="tag">Accelerometer Sensors</span>
+        <span class="tag">Grazing Behaviour</span>
+        <span class="tag">Fatty Acid Profiling</span>
+        <span class="tag">Longitudinal Studies</span>
+        <span class="tag">Animal Welfare</span>
+        <span class="tag">Climate-Smart Ag</span>
+        <span class="tag">Dairy Systems</span>
+        <span class="tag">Sheep Production</span>
+        <span class="tag">Bioinformatics</span>
+        <span class="tag">R / SAS</span>
+        <span class="tag">Predictive Modelling</span>
+        <span class="tag">Knowledge Transfer</span>
+        <span class="tag">Postgrad Supervision</span>
+        <span class="tag">GDPR Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">// Academic Credentials</div>
+  <h2>Education & <em>Honours</em></h2>
+  <p class="section-intro">Fully-funded scholarships across three continents; multiple academic awards.</p>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">Doctor of Philosophy</div>
+      <div class="edu-title">Animal Science</div>
+      <div class="edu-uni">Massey University, New Zealand 🇳🇿</div>
+      <div class="edu-years">2019 – 2022 · Fully Funded (MPI NZ Scholarship)</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Master of Science</div>
+      <div class="edu-title">Animal Nutrition & Feed Science</div>
+      <div class="edu-uni">Guangxi University, China 🇨🇳</div>
+      <div class="edu-years">2015 – 2018 · Fully Funded (Chinese Government Scholarship)</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Doctor of Veterinary Medicine</div>
+      <div class="edu-title">Animal & Veterinary Sciences</div>
+      <div class="edu-uni">UVAS, Pakistan 🇵🇰</div>
+      <div class="edu-years">2007 – 2012</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// Contact</div>
+  <h2>Let's <em>Collaborate</em></h2>
+  <p class="section-intro">Open to research partnerships, industry advisory roles, and international collaborations in sustainable livestock science.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <strong>Location</strong>Dublin, County Dublin, Ireland
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail">
+          <strong>Phone</strong>+353 857 544 035
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail">
+          <strong>Email</strong><a href="mailto:wasimunjum@googlemail.com">wasimunjum@googlemail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🔗</div>
+        <div class="contact-detail">
+          <strong>LinkedIn</strong><a href="https://www.linkedin.com/in/muhammadwasim-iqbal-dvm-msphd-16610147" target="_blank">View Profile →</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📚</div>
+        <div class="contact-detail">
+          <strong>Google Scholar</strong><a href="https://scholar.google.com/citations" target="_blank">View Publications →</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="discovery-box">
+        <h3>Notable Discovery</h3>
+        <p>Two novel methanogen archaeal strains discovered and named during doctoral research:</p>
+        <div class="discovery-item">Methanimicrococcus sp. Strain Wasim1</div>
+        <div class="discovery-item">Methanoculleus sp. Strain Wasimlinii</div>
+        <p style="margin-top:1rem; font-size:0.8rem; color:var(--muted);">These discoveries contribute foundational knowledge to understanding methanogen diversity in ruminant systems and potential targets for emission reduction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Muhammad Wasim Iqbal · DVM, MS, PhD · Built for GitHub Pages
+</footer>
+
+<script>
+  // Animate skill bars on scroll
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('skill-bar-fill')) {
+          entry.target.style.width = entry.target.dataset.width + '%';
+        }
+        if (entry.target.classList.contains('timeline-item')) {
+          entry.target.classList.add('visible');
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+
+  bars.forEach(bar => observer.observe(bar));
+  timelineItems.forEach(item => observer.observe(item));
+
+  // Stagger timeline reveal
+  timelineItems.forEach((item, i) => {
+    item.style.transitionDelay = (i * 0.08) + 's';
+  });
+</script>
+</body>
+</html>
